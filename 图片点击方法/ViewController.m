@@ -32,16 +32,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.showImageView.userInteractionEnabled = YES; //UIImageView开启接收事件
-    UITapGestureRecognizer *tapBig = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapZoomOut)]; //点击手势
+    UITapGestureRecognizer *tapBig = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapZoomIn)]; //点击手势
     [self.showImageView addGestureRecognizer:tapBig];
 }
 /**
  *  点击原图图片放大
  */
-- (void)tapZoomOut {
+- (void)tapZoomIn {
     self.showImageView.hidden = YES;
     
-    UITapGestureRecognizer *tapBack = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapZoomIn)];
+    UITapGestureRecognizer *tapBack = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapZoomOut)];
     UIScrollView *backgroundView = [[UIScrollView alloc] init]; //背景图
     self.backgroundView = backgroundView;
     backgroundView.frame = [UIScreen mainScreen].bounds;
@@ -72,7 +72,7 @@
 /**
  *  点击放大图片回到原始尺寸
  */
-- (void)tapZoomIn {
+- (void)tapZoomOut {
     [UIView animateWithDuration:0.7 animations:^{
         self.originImageView.frame = self.originRect;
         self.backgroundView.backgroundColor = [UIColor clearColor];
